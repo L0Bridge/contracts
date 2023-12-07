@@ -599,7 +599,7 @@ contract Bridge is FeeDonate, ILayerZeroReceiver, ILayerZeroUserApplicationConfi
     function withdrawRebaseReduceToken(address tokenAddress, uint256 amount) external onlyOwner {
         uint256 balanceBefore = IERC20(tokenAddress).balanceOf(address(this));
         require(tokenPoolMap[tokenAddress] > balanceBefore);
-        IERC20(address(this)).safeTransfer(msg.sender, amount);
+        IERC20(tokenAddress).safeTransfer(msg.sender, amount);
     }
 
     function withdrawTeamAndDAOFee(address tokenAddress) external onlyOwner {
